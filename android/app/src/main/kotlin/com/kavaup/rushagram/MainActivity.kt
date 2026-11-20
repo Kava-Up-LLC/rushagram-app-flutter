@@ -1,4 +1,4 @@
-package com.example.rushagram_app
+package com.kavaup.rushagram
 
 import io.flutter.embedding.android.FlutterActivity
 

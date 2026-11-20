@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.rushagram_app"
+    namespace = "com.kavaup.rushagram"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -21,10 +21,10 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.example.rushagram_app"
+        applicationId = "com.kavaup.rushagram"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = flutter.minSdkVersion
+        minSdk = 24 // AppAmbit SDK needs 24+
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
@@ -41,4 +41,16 @@ android {
 
 flutter {
     source = "../.."
+}
+
+dependencies {
+    // Firebase Cloud Messaging for AppAmbit push (as the push SDK README asks).
+    implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
+    implementation("com.google.firebase:firebase-messaging")
+}
+
+// Push (AppAmbit uses Firebase Cloud Messaging on Android). Applied only when the Firebase file is there,
+// so the app still builds without it (it just won't get the morning notification).
+if (file("google-services.json").exists()) {
+    apply(plugin = "com.google.gms.google-services")
 }
