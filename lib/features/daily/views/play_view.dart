@@ -25,12 +25,14 @@ class PlayView extends StatefulWidget {
 }
 
 class _PlayViewState extends State<PlayView> with SingleTickerProviderStateMixin {
-  late final AnimationController _shake = AnimationController(vsync: this, duration: const Duration(milliseconds: 350));
+  // Created in initState, not lazily: a lazy controller would be created inside dispose() when no word was wrong.
+  late final AnimationController _shake;
   late int _seenWrong = widget.controller.wrongCount;
 
   @override
   void initState() {
     super.initState();
+    _shake = AnimationController(vsync: this, duration: const Duration(milliseconds: 350));
     widget.controller.addListener(_onChange);
   }
 
