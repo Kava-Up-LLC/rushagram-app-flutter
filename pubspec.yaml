@@ -54,3 +54,10 @@ flutter_launcher_icons:
   # The foreground already keeps the mark inside the 66 dp safe zone; the default 16% inset would shrink it twice.
   adaptive_icon_foreground_inset: 0
 
+# Native splash. Run: dart run flutter_native_splash:create
+flutter_native_splash:
+  color: "#ECEFF5"
+  image: assets/branding/mark.png
+  android_12:
+    color: "#ECEFF5"
+    image: assets/branding/icon_foreground.png
