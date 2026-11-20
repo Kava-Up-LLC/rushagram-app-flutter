@@ -17,10 +17,10 @@ The app is built with **one prompt** sent to a coding agent (Claude Code) with t
 
 ## 0. By hand (done 2026-11-20)
 
-1. AppAmbit: **App Rushagram - ios** and **App Rushagram - Android**. Both App Keys are in `.env` (git-ignored).
+1. AppAmbit: **Rushagram - iOS** and **Rushagram - Android**. Both App Keys are in `.env` (git-ignored).
 2. Firebase: Android app `com.kavaup.rushagram`; `android/app/google-services.json` is in place (git-ignored).
-   Service account uploaded to **App Rushagram - Android**.
-3. iOS push: APNs `.p8` uploaded to **App Rushagram - ios** (Sandbox & Production), bundle id `com.kavaup.rushagram`.
+   Service account uploaded to **Rushagram - Android**.
+3. iOS push: APNs `.p8` uploaded to **Rushagram - iOS** (Sandbox & Production), bundle id `com.kavaup.rushagram`.
 
 Record the terminal while the prompt is pasted (1 s still before, paste, Enter, 5 s after). It goes in the video.
 
@@ -30,8 +30,8 @@ Record the terminal while the prompt is pasted (1 s still before, paste, Enter, 
 
 ```text
 Build Rushagram, a daily word puzzle for iPhone and Android, on AppAmbit, from start to finish.
-Use the AppAmbit MCP (call get-started-tool first) with the apps "App Rushagram - ios" and
-"App Rushagram - Android". Follow AGENTS.md, docs/tech/rushagram/tech_rushagram.md and DESIGN.md.
+Use the AppAmbit MCP (call get-started-tool first) with the apps "Rushagram - iOS" and
+"Rushagram - Android". Follow AGENTS.md, docs/tech/rushagram/tech_rushagram.md and DESIGN.md.
 
 The idea: once a day everyone gets the same 6 scrambled letters. Tap Start, the clock runs, build
 the word. One run per day. Your time and your rank today come from the cloud, so nobody can fake
