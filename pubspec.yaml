@@ -21,6 +21,8 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^6.0.0
   change_app_package_name: ^1.5.0
+  flutter_launcher_icons: ^0.14.4
+  flutter_native_splash: ^2.4.7
 
 flutter:
   uses-material-design: true
@@ -40,3 +42,15 @@ flutter:
           weight: 700
         - asset: assets/fonts/Rubik-ExtraBold.ttf
           weight: 800
+
+# App icon (approved logo, assets/branding/README.md). Run: dart run flutter_launcher_icons
+flutter_launcher_icons:
+  image_path: assets/branding/icon_master.png
+  android: true
+  ios: true
+  remove_alpha_ios: true
+  adaptive_icon_foreground: assets/branding/icon_foreground.png
+  adaptive_icon_background: "#ECEFF5"
+  # The foreground already keeps the mark inside the 66 dp safe zone; the default 16% inset would shrink it twice.
+  adaptive_icon_foreground_inset: 0
+
