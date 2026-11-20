@@ -1,4 +1,6 @@
 -- Load the word list once (INSERT OR IGNORE: safe to run again).
+-- Note: the AppAmbit SQL editor refuses statements containing SQLite commands such as VACUUM or ATTACH,
+-- so those words are not in the list.
 INSERT OR IGNORE INTO words (word) VALUES
 ('should'),
 ('before'),
@@ -250,7 +252,7 @@ INSERT OR IGNORE INTO words (word) VALUES
 ('facial'),
 ('import'),
 ('mighty'),
-('vacuum'),
+('spooky'),
 ('fabric'),
 ('tragic'),
 ('adjust'),
@@ -375,7 +377,7 @@ INSERT OR IGNORE INTO words (word) VALUES
 ('velvet'),
 ('behold'),
 ('twitch'),
-('attach'),
+('subset'),
 ('eighty'),
 ('finite'),
 ('gallon'),

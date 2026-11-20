@@ -248,7 +248,7 @@ potato
 facial
 import
 mighty
-vacuum
+spooky
 fabric
 tragic
 adjust
@@ -373,7 +373,7 @@ packet
 velvet
 behold
 twitch
-attach
+subset
 eighty
 finite
 gallon
