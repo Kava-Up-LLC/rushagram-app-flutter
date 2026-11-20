@@ -1,7 +1,7 @@
 # DESIGN.md — Rushagram · "Stopwatch Tiles"
 
 The look of Rushagram. Match it exactly: colors, type, spacing, components and screens.
-Status: **proposal (2026-11-18)** — waiting for Jesús's OK before Prompt 2.
+Status: **approved (2026-11-20)**.
 
 ## 1. The idea
 

@@ -1,6 +1,6 @@
 # Rushagram
 
-The word of the day against the clock — built on AppAmbit in three prompts.
+The word of the day against the clock — built on AppAmbit with one prompt.
 
 - Spec: [docs/tech/rushagram/tech_rushagram.md](docs/tech/rushagram/tech_rushagram.md)
 - Prompts: [prompts.md](prompts.md)

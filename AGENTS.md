@@ -15,7 +15,7 @@ Rushagram — the word of the day against the clock. A Flutter app (iOS + Androi
 |---|---|
 | **`docs/tech/rushagram/tech_rushagram.md`** | Everything: scope (6 features, nothing more), rules, data model, the cloud functions, folder structure, how state works, screens, acceptance criteria, risks. |
 | `DESIGN.md` | The look: colors, type, spacing, components, screens. |
-| `prompts.md` | The 3 prompts the app is built with, in order. |
+| `prompts.md` | The one prompt the app is built with. |
 
 Build only what the spec describes. If something is missing or unclear, ask — don't invent features.
 
@@ -30,12 +30,14 @@ Build only what the spec describes. If something is missing or unclear, ask — 
 6. Online only: no cache, no queue, no sync-later. Network failure → "No connection" banner + Retry.
 7. Screens in English. No login, no accounts.
 8. Never print, paste or commit App Keys, `.env`, `google-services.json` secrets or push credentials.
-9. Work on branch **`dev`**. Never commit to `main`. One commit per prompt, clear message.
+9. Work on branch **`dev`**. Never commit to `main`. Commit at the end of each part of the prompt (backend, game, push), clear messages.
 10. In UI copy, comments for the video and summaries, don't say "server" — say "AppAmbit" or "the cloud".
 11. Push from the cloud: `ctx.appambit.push({ title, body, data, consumer_id })` inside Cloud Code. It only reaches
     phones of the AppAmbit app the function runs in, so `morning_push` runs in **each** app for its own players.
     A player's `consumer_id` is saved by `today` from `ctx.consumer.id`.
-12. Design: match `DESIGN.md`. While it says "proposal", ask before building screens.
+12. Design: match `DESIGN.md` (approved).
+13. App id: change it with the `change_app_package_name` package, not by hand.
+14. Test crash: long-press the Rushagram title → `AppAmbitSdk.generateTestCrash()` (spec §10).
 
 ## Commands
 
@@ -61,7 +63,7 @@ flutter build ios --debug --no-codesign
 Grocelet uses the same architecture (no packages for state). Take the SDK knowledge and the patterns, not its
 features.
 
-## After each prompt
+## At the end
 
 End with a short table: **What the agent did** — one column for **AppAmbit**, one for **the Rushagram app** — in plain
 words, with counts (tables, functions, screens, tests). It goes on screen in the video.
