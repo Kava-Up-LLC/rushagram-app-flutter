@@ -25,7 +25,7 @@ AppServices services({FakeStore? store, FakeRepo? repo, List<String>? shared, Fa
 void main() {
   testWidgets('first open: nickname, then play', (tester) async {
     await tester.pumpWidget(App(services: services()));
-    expect(find.text('Rushagram'), findsOneWidget);
+    expect(find.bySemanticsLabel('Rushagram'), findsOneWidget); // the wordmark image
     expect(find.text('One word a day. Everyone gets the same letters.'), findsOneWidget);
     await tester.tap(find.text("Let's play"));
     await tester.pump();

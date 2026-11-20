@@ -44,7 +44,8 @@ class _NicknameViewState extends State<NicknameView> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 48),
-                  const Text('Rushagram', style: AppText.title),
+                  // The approved wordmark (assets/branding/README.md) instead of the text title.
+                  Image.asset('assets/branding/wordmark.png', height: 40, semanticLabel: 'Rushagram'),
                   const SizedBox(height: 8),
                   const Text('One word a day. Everyone gets the same letters.', style: AppText.body),
                   const SizedBox(height: 32),
