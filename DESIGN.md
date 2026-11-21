@@ -1,104 +1,103 @@
-# DESIGN.md — Rushagram · "Stopwatch Tiles"
+# DESIGN.md — Rushagram · "Arcade sticker"
 
 The look of Rushagram. Match it exactly: colors, type, spacing, components and screens.
-Status: **approved (2026-11-20)**.
+Status: **approved (2026-11-20)**, option B of the redesign canvas
+(https://claude.ai/artifact/LnNooQEaX614n14YjE7EKr, row "Opción B"). It replaces "Stopwatch Tiles".
 
 ## 1. The idea
 
-Rushagram is a race against a stopwatch with six letter tiles. The screen is a calm **slate board** (pale
-blue-gray), the letters are **white tiles** with a hard drop, like real game tiles on a table, and the race has its
-own color: **amber**. Amber paints the timer, the Start button, your time and your rank. When amber shows up, the
-clock is involved.
+Rushagram is a race against a stopwatch with six letter tiles. It must feel like a **game**, not a form. The screen is
+a light slate board and everything on it is a **sticker**: white or colored pieces with a thick ink outline and a solid
+ink shadow, like stickers stuck on a table. The clock is a real **stopwatch** (crown on top, tick marks, a needle and an
+amber slice that grows with the seconds).
 
 Three rules:
-1. **Amber means "the clock"** and nothing else: Start, the timer pill, "Solved in 0:23", your rank. Strong color only
-   on small things. **Big blocks use soft fills with dark text**, never a saturated fill.
-2. **Nothing is black** (Quotation already owns black). Text is deep indigo; normal buttons are indigo.
-3. **Tiles are physical.** Tiles, slots, cards and buttons use a hard 3 px drop **without blur**. No soft gray shadows,
-   no gradients.
+1. **Everything is a sticker.** Tiles, cards, buttons, fields and the top bar have a 3 px `ink` outline and a solid
+   `ink` drop with no blur. No soft shadows, no gradients.
+2. **Amber is the race**: the Start / Let's play buttons, the stopwatch slice and needle, your time, your rank badge and
+   the solved tiles. Indigo is the game table: the top bar and the tile tray.
+3. **Nothing is black, nothing is red.** Text and outlines are deep indigo (`ink`). A wrong word is shown by the shake and
+   a speech bubble, not by color.
 
 ## 2. Colors
 
-| Token | Hex | Use | Contrast |
-|---|---|---|---|
-| `board` | `#ECEFF5` | Screen background (Scaffold) | — |
-| `tile` | `#FFFFFF` | Letter tiles, cards, fields | — |
-| `ink` | `#23264A` | Letters on tiles, all main text | 14.6:1 on tile |
-| `inkMuted` | `#5D6283` | Secondary text, ranking times | 5.9:1 on tile · 5.1:1 on board |
-| `edge` | `#C6CBDB` | Hard drop under tiles, cards, fields | — |
-| `slot` | `#DDE1EC` | Empty answer slot fill | — |
-| `indigo` | `#3A3F8C` | Primary buttons (Let's play, Share), Shuffle/Clear text and border, links | white on indigo 9.0:1 |
-| `indigoDeep` | `#292D6A` | Hard drop under indigo buttons | — |
-| `amber` | `#C9751B` | The clock only, small things: Start button, timer pill, your rank number | white on amber 3.6:1 → use **Bold 20+** for text on it |
-| `amberDeep` | `#9A5813` | Hard drop under amber buttons | — |
-| `amberSoft` | `#FBEBD6` | Fill of the "Solved" card and your row in the ranking | ink on it 13:1 |
-| `butter` | `#F4E8C4` | "No connection" banner background (ink text) | ink on it 12:1 |
-| `onColor` | `#FFFFFF` | Text on indigo and amber | — |
-
-There is **no red** anywhere. A wrong word is shown by the shake and a line of `ink` text, not by color.
+| Token | Hex | Use |
+|---|---|---|
+| `board` | `#ECEFF5` | Screen background |
+| `tile` | `#FFFFFF` | Letter tiles, cards, fields, white buttons |
+| `ink` | `#23264A` | All main text, every outline and every sticker drop |
+| `inkMuted` | `#4A4F7A` | Secondary text (7:1 on board) |
+| `indigo` | `#3A3F8C` | Top bar, tile tray, Share button (white text) |
+| `indigoLight` | `#5A60B8` | Face-down tiles, the dashed edge of a used tile spot |
+| `indigoDark` | `#323779` | A used tile spot in the tray |
+| `onIndigoMuted` | `#C9CCF0` | The "?" on face-down tiles |
+| `slot` | `#E1E4F0` | Empty answer slot fill |
+| `slotEdge` | `#9AA0C8` | Dashed edge of an empty slot, the stopwatch at rest |
+| `amber` | `#F0A23B` | Start / Let's play, solved tiles, your time card, rank badges (ink text on it, 6.9:1) |
+| `amberDeep` | `#C9751B` | The stopwatch needle |
+| `amberSoft` | `#FBD9A6` | The stopwatch slice |
+| `highlight` | `#FFF3E0` | The next free slot, your row in the ranking |
+| `onColor` | `#FFFFFF` | Text on indigo |
 
 ## 3. Type
 
-One family: **Rubik**, bundled in `assets/fonts/` (static instances of the Google Fonts variable font, OFL license
-included): Regular 400, Medium 500, SemiBold 600, Bold 700, ExtraBold 800.
+One family: **Rubik**, bundled in `assets/fonts/` (Regular 400 … ExtraBold 800). Headings and numbers use 800.
 
-```yaml
-# pubspec.yaml (already there)
-fonts:
-  - family: Rubik
-    fonts:
-      - { asset: assets/fonts/Rubik-Regular.ttf, weight: 400 }
-      - { asset: assets/fonts/Rubik-Medium.ttf, weight: 500 }
-      - { asset: assets/fonts/Rubik-SemiBold.ttf, weight: 600 }
-      - { asset: assets/fonts/Rubik-Bold.ttf, weight: 700 }
-      - { asset: assets/fonts/Rubik-ExtraBold.ttf, weight: 800 }
-```
-
-| Style | Size / line | Weight | Use |
+| Style | Size | Weight | Use |
 |---|---|---|---|
-| `display` | 56 / 60 | 800 | "Solved in 0:23" time, tile letters use `tileLetter` |
-| `tileLetter` | 34 / 34 | 700 | Letters on tiles and slots, uppercase |
-| `title` | 28 / 34 | 800 | Screen titles ("Rushagram #12") |
-| `heading` | 20 / 26 | 700 | "#14 of 230 today", card titles |
-| `body` | 16 / 24 | 400 | Text |
-| `label` | 14 / 18 | 600 | Buttons, chips, ranking nicknames |
-| `timer` | 22 / 26 | 700, tabular figures (`FontFeature.tabularFigures()`) | Timer pill, ranking times |
+| `hero` | 40 | 800 | "Rushagram" on the lobby |
+| `banner` | 32 | 800 | "Solved!" ribbon |
+| `bigNumber` | 46 | 800, tabular | Your time, your rank |
+| `clock` | 34 / 52 | 800, tabular | Stopwatch label (running) / stopwatch at rest |
+| `tileLetter` | 26 | 800 | Letters on tiles (scales with the tile) |
+| `button` | 22 | 800 | Start / Let's play; 17 for Shuffle/Clear, 20 for Share |
+| `heading` | 17 | 800 | Card titles ("How it plays", "Top 20 today") |
+| `body` | 16 / 15 | 400 | Text |
+| `label` | 14 | 700 | Field label, chips, top bar |
 
-Sentence case everywhere except tile letters. No all-caps labels.
+Sentence case everywhere except tile letters.
 
-## 4. Spacing, radius, drops
+## 4. Spacing, radius, outline, drop
 
-- Spacing scale: 4, 8, 12, 16, 24, 32, 48. Screen padding 24.
-- Radius: tiles and slots 12, buttons 14, cards 16, timer pill fully round.
-- Drop: `Offset(0, 3)` with blur 0 in `edge` (tiles, cards, fields), `indigoDeep` (indigo buttons), `amberDeep`
-  (amber buttons). Pressed: the widget moves down 2 px and the drop shrinks to 1 px.
+- Screen padding 20, top 16 under the safe area. Spacing 8, 12, 14, 16, 22, 24, 42.
+- Radius: tiles 10, slots 10, buttons 16–18, cards 18–20, top bar 18, chips 9–10, pills fully round.
+- Outline: 3 px `ink` (the stopwatch 4 px).
+- Drop: solid `ink`, `Offset(0, 4)` tiles, `Offset(0, 5)` cards and the top bar, `Offset(0, 6)` big buttons, `Offset(0, 7)`
+  the stopwatch. Pressed: the piece moves down 3 px and the drop shrinks to 2 px.
 
 ## 5. Components
 
 | Component | Spec |
 |---|---|
-| **Letter tile** | 52×52 (fits 6 across a 360 px phone with 8 gaps), `tile` fill, `ink` letter, `edge` drop. Used tile: same place, `slot` fill, no letter, no drop. |
-| **Answer slot** | 52×52, `slot` fill, radius 12, no drop. Filled: looks like a tile. The 6 slots sit above the 6 tiles. |
-| **Timer pill** | `amber` fill, white `timer` text "0:23", 8×16 padding, top center. Before Start it shows "0:00" in `inkMuted` on `slot`. |
-| **Start button** | Full width, 56 high, `amber`, white "Start" Bold 20, `amberDeep` drop. |
-| **Primary button** | Full width, 52 high, `indigo`, white label, `indigoDeep` drop. |
-| **Secondary button** | `tile` fill, `indigo` 2 px border and text, `edge` drop (Shuffle, Clear). |
-| **Solved card** | `amberSoft` fill, `edge` drop, radius 16: "Solved in" (`heading`, `inkMuted`) + time (`display`, `ink`) + "#14 of 230 today" (`heading`, the "#14" in `amber`). |
-| **Ranking row** | 44 high: position (`label`, `inkMuted`), nickname (`label`, `ink`), time (`timer` 16, `inkMuted`, right). Your row: `amberSoft` fill. |
-| **No connection banner** | `butter` fill, `ink` text "No connection", **Retry** as a text button in `indigo`. |
+| **Top bar** | `indigo`, outline + drop, radius 18. Left: `#12` chip (`amber`, ink outline 2 px). Center: "Rushagram" (long-press = test crash, spec §10). Right: nickname. |
+| **Stopwatch** | 200 px white circle, 4 px outline, drop 7. Crown on top (amber with outline), 12 tick marks. Running: an `amberSoft` slice and an `amberDeep` needle that go round once a minute, the time on a small white label with outline. At rest: "0:00" big in `slotEdge`, no slice. |
+| **Answer slot** | 50×50, `slot` fill, 3 px dashed `slotEdge`. The next free one: solid ink outline on `highlight`. Filled: a tile. |
+| **Letter tile** | 50×50 (fits 6 across 360 px), white, outline, drop 4, ink letter. In the tray each tile is tilted a little (±3°). |
+| **Tray** | `indigo` card with outline + drop. A used letter leaves a dashed `indigoLight` spot on `indigoDark`. Before Start: six face-down tiles (`indigoLight`, "?" in `onIndigoMuted`). |
+| **Big button** | Full width, 64–66 high, `amber`, ink text with an icon (Start: stopwatch; Let's play: play). |
+| **White button** | `tile` fill, outline, drop 5, ink text and icon (Shuffle, Clear, Not now). |
+| **Share button** | `indigo`, white text and icon. |
+| **Field** | White, outline, drop 4, radius 16, 56 high, label above. |
+| **Speech bubble** | White, outline, drop 4, a tail pointing up at the slots: "Not this one. Keep going." for 2 s. |
+| **Ranking card** | White card. Rows 40 high: position badge (white, 2 px outline; 1st and your row `amber`), nickname, time. Your row: `highlight` with outline. Below the top 20 your row is added after a "···". |
+| **No connection** | White sticker: "No connection" + **Retry** in `indigo`. |
 
 ## 6. Screens
 
-1. **Nickname** — title "Rushagram", body "One word a day. Everyone gets the same letters.", six tiles spelling
-   R U S H · · as decoration (static), field "Your nickname", primary **Let's play**.
-2. **Play, before Start** — title "Rushagram #12", the timer pill at 0:00, six face-down tiles (`slot` fill, no
-   letters), body "Same letters for everyone today. The clock starts when you tap Start.", **Start**.
-3. **Play, running** — timer pill counting, 6 slots, 6 tiles, Shuffle + Clear side by side. Wrong word: tiles shake
-   (3 × 8 px, 350 ms), slots empty, line "Not this one. Keep going." under the slots for 2 s.
-4. **Result** — Solved card, "Top 20 today" heading, ranking list, primary **Share**, body
-   "Next Rushagram in 5h 12m" (`inkMuted`).
-5. **Notifications ask** (once, on Result after the first solve) — soft card: "Get a nudge when tomorrow's word is
-   ready?" with **Not now** / **Turn on**.
+1. **Lobby** (first open) — the logo mark, "Rushagram" (`hero`), a tilted white chip "Daily word · new word in 5h 12m"
+   (countdown to 00:00 UTC, phone clock), a "How it plays" card with three numbered steps (Tap Start. The clock begins. /
+   Build the 6-letter word from the tiles. / Beat everyone's time. One try a day.), then at the bottom "Your player name"
+   field and **Let's play**.
+2. **Play, before Start** — top bar, stopwatch at rest, six empty slots, the tray with face-down tiles, "Same letters for
+   everyone today. The clock starts when you tap Start.", **Start** at the bottom.
+3. **Play, running** — the stopwatch runs, slots fill, tray tiles leave dashed spots, hint "Tap a letter to place it. Tap
+   a placed one to send it back.", **Shuffle** and **Clear** side by side at the bottom.
+4. **Wrong word** — the tray shakes (3 × 8 px, 350 ms), the letters go back, the speech bubble shows for 2 s. The clock
+   keeps running.
+5. **Result** — a "Rushagram #12" chip and your nickname, "You've played today's Rushagram." when you come back, the
+   "Solved!" ribbon, the word in amber tiles (only right after solving: the phone never gets the word from the cloud),
+   two tilted cards ("Your time" amber · "Rank today" white with "of 230 today"), the notifications ask (once), the
+   ranking card, **Share my time** and "Next word in 5h 12m".
 
 ## 7. Copy
 
@@ -107,25 +106,25 @@ Sentence case everywhere except tile letters. No all-caps labels.
 | Wrong guess | Not this one. Keep going. |
 | Share | `Rushagram #12 · 0:23 · #14 today` |
 | Push | Title "Rushagram" · body "Today's Rushagram is ready." |
-| Already played | (lands on Result) "You've played today's Rushagram." |
+| Already played | "You've played today's Rushagram." |
 | No connection | No connection · Retry |
 | Nickname error | Use 2 to 16 letters or numbers. |
+| Notifications ask | Get a nudge when tomorrow's word is ready? · Not now / Turn on |
 
 ## 8. Motion
 
-- Tile tap: the letter flies to the next free slot (160 ms, ease-out).
-- Wrong: shake (above). Right: the 6 slots flip to amber one after another (40 ms apart), then Result.
-- Shuffle: tiles swap places (200 ms). Respect "reduce motion": no flight, no flip, just a fade.
+- Tile tap: the letter goes to the next free slot (160 ms, ease-out).
+- Wrong: tray shake (above). Right: the slots flip to amber one after another (40 ms apart), then Result.
+- Respect "reduce motion": no flip, no shake.
 
 ## 9. Flutter mapping
 
-- `core/theme/app_colors.dart` — the tokens above as `static const Color`.
-- `core/theme/app_text.dart` — the styles above (`fontFamily: 'Rubik'`).
-- `core/theme/app_theme.dart` — `ThemeData(useMaterial3: true, scaffoldBackgroundColor: board, fontFamily: 'Rubik')`,
-  buttons built as our own widgets (Material elevation/shadows off).
+- `core/theme/app_colors.dart` — the tokens above. `core/theme/app_text.dart` — the styles above.
+- `core/widgets/sticker.dart` — the outline + solid drop box (pressable). Buttons, field, top bar, cards build on it.
+- `features/daily/widgets/stopwatch.dart` — the stopwatch (CustomPainter), only draws time; the real time is measured in
+  the cloud.
 
 ## 10. Don't
 
 - No black, no red, no gradients, no blurred shadows.
-- No amber on anything that isn't the clock or the result.
-- No confetti, no sounds, no emoji in the UI.
+- No emoji, no confetti, no sounds.
