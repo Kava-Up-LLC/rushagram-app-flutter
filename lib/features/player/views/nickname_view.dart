@@ -42,7 +42,9 @@ class _NicknameViewState extends State<NicknameView> {
   @override
   Widget build(BuildContext context) => Scaffold(
         body: SafeArea(
+          // Anchored at the bottom: when the keyboard opens, "Let's play" stays visible above it.
           child: CustomScrollView(
+            reverse: true,
             slivers: [
               SliverPadding(
                 padding: const EdgeInsets.fromLTRB(20, 24, 20, 24),
