@@ -49,14 +49,16 @@ class _DailyViewState extends State<DailyView> {
             builder: (context, _) {
               final c = widget.controller;
               return switch (c.phase) {
-                DailyPhase.loading => const Center(child: CircularProgressIndicator(color: AppColors.indigo)),
+                DailyPhase.loading => const Center(child: CircularProgressIndicator(color: AppColors.ink)),
                 DailyPhase.failed => Padding(
-                    padding: const EdgeInsets.all(24),
+                    padding: const EdgeInsets.all(20),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         const SizedBox(height: 24),
-                        const Text('Rushagram', style: AppText.title),
+                        Image.asset('assets/branding/mark.png', height: 72, excludeFromSemantics: true),
+                        const SizedBox(height: 12),
+                        const Text('Rushagram', style: AppText.hero, textAlign: TextAlign.center),
                         const SizedBox(height: 24),
                         NoConnectionBanner(onRetry: c.load, message: c.failure?.message ?? 'No connection'),
                       ],

@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 
 import '../theme/app_colors.dart';
 import '../theme/app_text.dart';
-import 'hard_drop.dart';
+import 'sticker.dart';
 
-/// Indigo, full width, 52 high (Let's play, Share).
-class PrimaryButton extends StatelessWidget {
-  const PrimaryButton({super.key, required this.label, required this.onPressed, this.busy = false});
+/// The race button: amber, full width, ink text and icon (Start, Let's play). DESIGN.md §5.
+class BigButton extends StatelessWidget {
+  const BigButton({super.key, required this.label, required this.icon, required this.onPressed, this.busy = false});
 
   final String label;
+  final IconData icon;
   final VoidCallback? onPressed;
   final bool busy;
 
@@ -16,71 +17,87 @@ class PrimaryButton extends StatelessWidget {
   Widget build(BuildContext context) => Semantics(
         button: true,
         label: label,
-        child: HardDrop(
-          fill: onPressed == null ? AppColors.inkMuted : AppColors.indigo,
-          drop: AppColors.indigoDeep,
-          radius: 14,
-          onTap: busy ? null : onPressed,
-          child: SizedBox(
-            height: 52,
-            width: double.infinity,
-            child: Center(
-              child: busy
-                  ? const SizedBox.square(dimension: 20, child: CircularProgressIndicator(strokeWidth: 2.5, color: AppColors.onColor))
-                  : Text(label, style: AppText.label.copyWith(fontSize: 16, color: AppColors.onColor)),
-            ),
-          ),
-        ),
-      );
-}
-
-/// The clock's button: amber, full width, 56 high, "Start" Bold 20.
-class StartButton extends StatelessWidget {
-  const StartButton({super.key, required this.onPressed, this.busy = false});
-
-  final VoidCallback? onPressed;
-  final bool busy;
-
-  @override
-  Widget build(BuildContext context) => Semantics(
-        button: true,
-        label: 'Start',
-        child: HardDrop(
+        excludeSemantics: true,
+        child: Sticker(
           fill: AppColors.amber,
-          drop: AppColors.amberDeep,
-          radius: 14,
+          radius: 18,
+          drop: 6,
           onTap: busy ? null : onPressed,
           child: SizedBox(
-            height: 56,
+            height: 60,
             width: double.infinity,
             child: Center(
               child: busy
-                  ? const SizedBox.square(dimension: 22, child: CircularProgressIndicator(strokeWidth: 2.5, color: AppColors.onColor))
-                  : Text('Start', style: AppText.heading.copyWith(color: AppColors.onColor)),
+                  ? const SizedBox.square(dimension: 22, child: CircularProgressIndicator(strokeWidth: 3, color: AppColors.ink))
+                  : Row(mainAxisSize: MainAxisSize.min, children: [
+                      Icon(icon, color: AppColors.ink, size: 26),
+                      const SizedBox(width: 10),
+                      Text(label, style: AppText.button),
+                    ]),
             ),
           ),
         ),
       );
 }
 
-/// White with an indigo border (Shuffle, Clear, Not now).
-class SecondaryButton extends StatelessWidget {
-  const SecondaryButton({super.key, required this.label, required this.onPressed});
+/// White sticker button (Shuffle, Clear, Not now). Faded when disabled.
+class WhiteButton extends StatelessWidget {
+  const WhiteButton({super.key, required this.label, required this.onPressed, this.icon});
 
   final String label;
+  final IconData? icon;
   final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) => Semantics(
         button: true,
+        enabled: onPressed != null,
         label: label,
-        child: HardDrop(
-          fill: AppColors.tile,
-          drop: AppColors.edge,
-          radius: 14,
-          border: Border.all(color: AppColors.indigo, width: 2),
+        excludeSemantics: true,
+        child: Opacity(
+          opacity: onPressed == null ? 0.5 : 1,
+          child: Sticker(
+            fill: AppColors.tile,
+            onTap: onPressed,
+            child: SizedBox(
+              height: 48,
+              child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                if (icon != null) ...[Icon(icon, color: AppColors.ink, size: 22), const SizedBox(width: 8)],
+                Text(label, style: AppText.button.copyWith(fontSize: 17)),
+              ]),
+            ),
+          ),
+        ),
+      );
+}
+
+/// Indigo sticker button with white text (Share my time, Turn on).
+class IndigoButton extends StatelessWidget {
+  const IndigoButton({super.key, required this.label, required this.onPressed, this.icon, this.height = 54});
+
+  final String label;
+  final IconData? icon;
+  final VoidCallback? onPressed;
+  final double height;
+
+  @override
+  Widget build(BuildContext context) => Semantics(
+        button: true,
+        label: label,
+        excludeSemantics: true,
+        child: Sticker(
+          fill: AppColors.indigo,
+          radius: 18,
+          drop: 6,
           onTap: onPressed,
-          child: SizedBox(height: 48, child: Center(child: Text(label, style: AppText.label.copyWith(color: AppColors.indigo)))),
+          child: SizedBox(
+            height: height,
+            width: double.infinity,
+            child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              if (icon != null) ...[Icon(icon, color: AppColors.onColor, size: 22), const SizedBox(width: 10)],
+              Text(label, style: AppText.button.copyWith(fontSize: 20, color: AppColors.onColor)),
+            ]),
+          ),
         ),
       );
 }
